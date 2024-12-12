@@ -12,19 +12,13 @@ const App = () => {
     <div className="min-h-screen">
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/create" element={<EventForm />} />
+        <Route path="/dashboard/edit/:id" element={<EventForm />} />
         <Route
-          path="/dashboard"
-          element={token ? <Dashboard /> : <Navigate to="/login" />}
+          path="*"
+          element={<Navigate to={token ? "/dashboard" : "/login"} />}
         />
-        <Route
-          path="/dashboard/create"
-          element={token ? <EventForm /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/dashboard/edit/:id"
-          element={token ? <EventForm /> : <Navigate to="/login" />}
-        />
-        <Route path="*" element={<Navigate to={token ? "/dashboard" : "/login"} />} />
       </Routes>
     </div>
   );
